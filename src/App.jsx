@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Carousel from "./Carousel";
@@ -14,7 +14,6 @@ import Footer from "./Footer";
 import AboutPage from "./AboutPage";
 import ContactPage from "./ContactPage";
 import ScrollToTop from "./ScrollToTop";
-
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,6 +52,17 @@ function App() {
       onClick: () => navigate("/genre/Comedy"),
     },
   ];
+
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 420);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 420);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const [carouselItems, setCarouselItems] = useState(genres);
   const [isSearchMode, setIsSearchMode] = useState(false);
@@ -137,7 +147,9 @@ function App() {
                     <input
                       type="text"
                       className="search-input"
-                      placeholder="Search for movies..."
+                      placeholder={
+                        isSmallScreen ? "Search" : "Search for movies..."
+                      }
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       onKeyDown={handleKeyDown}
