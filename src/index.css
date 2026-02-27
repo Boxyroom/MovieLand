@@ -767,6 +767,15 @@ h1 .brand-accent {
   .about-card, .contact-card {
     min-height: 50vh;
   }
+
+ .about-card {
+  padding: 20px;
+ }
+
+  .about-description {
+    margin-left: 0;
+    text-align: center;
+  }
   
     body {
     background-attachment: scroll;
@@ -883,7 +892,7 @@ h1 .brand-accent {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    line-height: 2;
+    line-height: 1.2;
   }
 
     .profile-logo {
@@ -892,7 +901,7 @@ h1 .brand-accent {
 
   .profile-info p {
     font-size: 12px;
-    line-height: 1.4;
+    line-height: 1.2;
   
   }
   }
