@@ -15,8 +15,8 @@ function Footer({ onHomeClick }) {
           <Link to="/" onClick={onHomeClick}>
             Home
           </Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/contact">Contact Us</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
         </div>
       </div>
     </footer>

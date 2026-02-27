@@ -676,13 +676,13 @@ body {
 .brand-accent {
   color: #ff3b3b;
   font-weight: 700;
-  font-size: 25px;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
   -webkit-text-stroke: 1px rgba(0,0,0,0.7);
   text-shadow: 0 0 8px rgba(111, 59, 59, 0);
 }
 
 h1 .brand-accent {
- font-size: 44px; 
+ font-size: clamp(1.8rem, 5vw, 2.6rem) !important; 
 }
 
 .profile-logo {
@@ -874,9 +874,26 @@ h1 .brand-accent {
 }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 500px) {
   .search-input {
     text-align: center;
+  }
+
+    .profile-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 2;
+  }
+
+    .profile-logo {
+    display: none !important;
+  }
+
+  .profile-info p {
+    font-size: 12px;
+    line-height: 1.4;
+  
   }
   }
 
