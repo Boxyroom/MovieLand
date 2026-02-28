@@ -1,10 +1,13 @@
-import jcLogo from "./assets/Redlogo.png";
+import jcLogo from "./assets/RedLogo.png";
 
 function AboutPage() {
   return (
     <div className="about-page">
       <div className="about-card">
-        <h1>About The Creator of <strong className="brand-accent">MovieLand</strong></h1>
+        <h1>
+          About The Creator of{" "}
+          <strong className="brand-accent">MovieLand</strong>
+        </h1>
 
         <p className="about-description">
           <strong className="brand-accent">MovieLand</strong> is a React-based
