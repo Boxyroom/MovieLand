@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import jcLogo from "./assets/Redlogo.png";
+import jcLogo from "./assets/RedLogo.png";
 
 function Footer({ onHomeClick }) {
   return (
@@ -8,7 +8,7 @@ function Footer({ onHomeClick }) {
         <div className="footer-left">
           © 2025 A Clavette Design
           <div className="footer-logo">
-              <img src={jcLogo} alt="John Clavette Design Logo" />
+            <img src={jcLogo} alt="John Clavette Design Logo" />
           </div>
         </div>
         <div className="footer-links">
