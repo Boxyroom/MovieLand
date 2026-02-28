@@ -137,7 +137,7 @@ body {
 
 /* ===== MOVIE ROW ===== */
 .movie-row {
-  margin-top: 20px;
+  margin-top: 60px;
   min-height: 100vh;
 }
 
@@ -160,15 +160,12 @@ body {
 }
 
 .row-posters {
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  overflow-y: visible;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 20px;
-  gap: 30px;
-  scroll-behavior: smooth;
-  height: 420px;
-  animation: rowEnter 1s ease;
 }
 
 @keyframes titleEnter {
@@ -187,14 +184,14 @@ body {
 }
 
 .row-poster {
-  flex-shrink: 0;
-  width: 200px;
-  height: auto;
+  width: 100%;
   aspect-ratio: 2 / 3;
-  border-radius: 16px;
   object-fit: cover;
-  display: block;
-  transition: all .5s ease;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+  animation: rowEnter 0.6s ease;
+  justify-items: center;
 }
 
 @keyframes rowEnter {
@@ -212,7 +209,52 @@ body {
   transform: translateY(-8px) scale(1.08);
   filter: brightness(1.08) contrast(1.1);
   cursor: pointer;
-  box-shadow: 0 12px 20px 4px rgba(108, 105, 105, 0.7);
+  box-shadow: 0 4px 20px 2px rgba(108, 105, 105, 0.7);
+}
+
+/* ===== SORT DROPDOWN ===== */
+
+.sort-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.sort-select {
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-align: center;
+  text-align-last: center;
+  color: white;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  appearance: none;         
+  outline: none;
+}
+
+.sort-select:hover {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  transform: scale(1.05);
+}
+
+.sort-select:focus {
+  border: 1px solid #ff3b3b;
+  box-shadow: 0 0 12px rgba(255, 59, 59, 0.5);
+}
+
+.sort-select option {
+  color: black;
+  background: white;
 }
 
 /* ===== GENRE CAROUSEL ===== */
@@ -754,6 +796,11 @@ h1 .brand-accent {
   .carousel {
     padding: 0 40px;
   }
+
+  .row-posters {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
 }
 
 @media (max-width: 768px) {
@@ -808,16 +855,10 @@ h1 .brand-accent {
 }
 
   .row-posters {
-    gap: 12px;
-    padding: 10px 0;
+    
     height: auto;
-    align-items: flex-start;
-    gap: 24px;
-  }
-
-  .row-poster {
-    width: 32vw;
-    max-width: 150px;
+   
+    gap: 10px 10px;
   }
 
   .poster-skeleton {
@@ -883,6 +924,12 @@ h1 .brand-accent {
 }
 }
 
+@media (max-width: 600px) {
+  .row-posters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 500px) {
   .search-input {
     text-align: center;
@@ -905,6 +952,12 @@ h1 .brand-accent {
   
   }
   }
+
+  @media (max-width: 400px) {
+  .row-posters {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 

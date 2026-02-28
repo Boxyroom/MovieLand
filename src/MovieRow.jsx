@@ -21,14 +21,15 @@ function MovieRow({ title, query, movies: externalMovies, onLoad }) {
       .then((res) => res.json())
       .then((data) => {
         const results = data.results || [];
+        const filtered = results
+          .filter((movie) => movie.poster_path)
+          .slice(0, 8);
 
-        setFetchedMovies(results);
-        setTimeout(() => {
-          setLoading(false);
-        }, 300);
+        setFetchedMovies(filtered);
+        setLoading(false);
 
         if (onLoad) {
-          onLoad(results);
+          onLoad(filtered);
         }
       });
   }, [query, externalMovies, onLoad]);
@@ -45,9 +46,8 @@ function MovieRow({ title, query, movies: externalMovies, onLoad }) {
             <div key={index} className="poster-skeleton" />
           ))}
 
-        {moviesToDisplay
-          .filter((movie) => movie.poster_path)
-          .map((movie) => (
+        {!loading &&
+          moviesToDisplay.map((movie) => (
             <img
               key={movie.id}
               className="row-poster"

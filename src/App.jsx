@@ -18,6 +18,7 @@ import ScrollToTop from "./ScrollToTop";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
+  const [genreSortOrder, setGenreSortOrder] = useState("");
   const navigate = useNavigate();
   const [isCarouselVisible, setIsCarouselVisible] = useState(true);
   const genres = [
@@ -98,6 +99,7 @@ function App() {
   }
 
   function resetToGenres() {
+    setGenreSortOrder("");
     setIsCarouselVisible(false);
 
     setTimeout(() => {
@@ -123,7 +125,7 @@ function App() {
     <>
       <ScrollToTop />
       <Nav isSearchMode={isSearchMode} onReset={resetToGenres} />
-      <div className="page-container" key={location.pathname}>
+      <div className="page-container">
         <Routes location={location}>
           <Route
             path="/"
@@ -174,7 +176,15 @@ function App() {
             }
           />
 
-          <Route path="/genre/:genreQuery" element={<GenrePage />} />
+          <Route
+            path="/genre/:genreQuery"
+            element={
+              <GenrePage
+                sortOrder={genreSortOrder}
+                setSortOrder={setGenreSortOrder}
+              />
+            }
+          />
           <Route path="/movie/:imdbID" element={<MoviePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />

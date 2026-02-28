@@ -11,7 +11,7 @@ const GENRE_MAP = {
   Documentary: 99,
 };
 
-function GenrePage() {
+function GenrePage({ sortOrder, setSortOrder }) {
   const { genreQuery } = useParams();
   const genreId = GENRE_MAP[genreQuery];
   const [movies, setMovies] = useState([]);
@@ -27,12 +27,17 @@ function GenrePage() {
       const data = await res.json();
 
       if (data.results) {
-        setMovies(data.results.slice(0, 10));
+        const filtered = data.results
+          .filter((movie) => movie.poster_path)
+          .slice(0, 8);
+
+        setMovies(filtered);
       }
     }
 
     fetchGenreMovies();
   }, [genreId]);
+
   if (!genreId) {
     return (
       <div style={{ padding: "40px", textAlign: "center" }}>
@@ -40,9 +45,31 @@ function GenrePage() {
       </div>
     );
   }
+
+ 
+  const sortedMovies = sortOrder
+    ? [...movies].sort((a, b) => {
+        const dateA = new Date(a.release_date || 0);
+        const dateB = new Date(b.release_date || 0);
+
+        return sortOrder === "desc" ? dateB - dateA : dateA - dateB;
+      })
+    : movies;
+
   return (
     <div style={{ paddingTop: "40px" }}>
-      <MovieRow title={`${genreQuery} Movies`} movies={movies} />
+      <div className="sort-container">
+        <select className="sort-select"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="">Sort by year</option>
+          <option value="desc">Newest to Oldest</option>
+          <option value="asc">Oldest to Newest</option>
+        </select>
+      </div>
+
+      <MovieRow title={`${genreQuery} Movies`} movies={sortedMovies} />
     </div>
   );
 }
