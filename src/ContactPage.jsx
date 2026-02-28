@@ -1,4 +1,4 @@
-import jcLogo from "./assets/Redlogo.png";
+import jcLogo from "./assets/RedLogo.png";
 
 function ContactPage() {
   return (
